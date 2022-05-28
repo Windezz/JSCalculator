@@ -1,13 +1,22 @@
-const buttonDiv = document.querySelector('.CButtons');
+// const buttonDiv = document.querySelector('.NButtons');
 
-window.addEventListener('DOMContentLoaded', () => {
+// create the number buttons when the window has been loaded
+// window.addEventListener('DOMContentLoaded', () => {
 
-    for (let i = 0; i < 10; i++) {
-        let newButton = document.createElement('button');
-        newButton.textContent = i;
-        buttonDiv.appendChild(newButton).className = `button${i}`;
-    }
-})
+//     for (let i = 0; i < 10; i++) {
+//         let newButton = document.createElement('button');
+//         newButton.textContent = i;
+//         newButton.setAttribute('style', 'width: 40px; height: 40px;');
+//         buttonDiv.appendChild(newButton).className = `button`;
+//     }
+
+
+//     // Test if the button works
+//     let allButton = document.querySelectorAll('.button');
+//     allButton.forEach((but) => {
+//         but.addEventListener('click', () => console.log(but.textContent));
+//     })
+// })
 
 
 function add(a, b) {

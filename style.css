@@ -1,0 +1,107 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   
+    align-items: center;
+    padding: 2px;
+}
+
+.calculator {
+    width: 400px;
+    height: 660px;
+    background-color: black;
+    border-radius: 20px;
+}
+
+.result {
+    width: 360px;
+    height: 130px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 20px;
+    margin: 10px;
+    font-size: xx-large;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: end;
+}
+
+.EraseButtons {
+    margin: 10px;
+}
+
+.EraseButtons button {
+    height: 50px;
+    width: 188px;
+    border-radius: 10px;
+    border: solid grey 2px;
+}
+
+
+.AllButtons {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    width: 380px;
+    height: 428px;
+}
+
+.NButtons {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 5px;
+    margin-bottom: 20px;
+    padding-bottom: 2px;
+    row-gap: 2px;
+    column-gap: 2px;
+    width: 320px;
+    height: 428px;
+}
+
+.NButtons button, .OButtons button {
+    font-family: sans-serif;
+    font-size: larger;
+    font-weight: bolder;
+    border: solid grey 2px;
+    border-radius: 20px;
+    width: 90px;
+    height: 100px;
+}
+
+button:hover {
+    background: rgb(216, 216, 216);
+}
+
+.OButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    width: 90px;
+    height: 428px;
+    margin-bottom: 20px;
+}
+
+/* Special style */
+#equal {
+    background-color: rgb(0, 147, 215);
+    color: whitesmoke;
+    font-size:xx-large;
+}
+
+#clear {
+    background-color: rgba(247, 69, 152, 0.719);
+    color: whitesmoke;
+    font-size: large;
+    font-weight:bold;
+}
+
+#clear:hover, #delete:hover, #equal:hover {
+    border-color: greenyellow;
+}
+
+#delete {
+    background-color: rgba(0, 179, 255, 0.719);
+    color: whitesmoke;
+    font-size: large;
+    font-weight:bold;
+}
