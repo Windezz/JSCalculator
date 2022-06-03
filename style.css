@@ -15,6 +15,7 @@ body {
 }
 
 .result {
+
     width: 360px;
     height: 130px;
     padding: 10px;
@@ -26,6 +27,17 @@ body {
     font-weight: bold;
     text-align: end;
 }
+
+.expression, .inout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    width: 350px;
+    height: 60px;
+}
+
 
 .EraseButtons {
     margin: 10px;
