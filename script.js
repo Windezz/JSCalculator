@@ -8,6 +8,7 @@ const minus = document.querySelector('#minus');
 const add = document.querySelector('#add');
 const clear = document.querySelector('#clear');
 const equal = document.querySelector('#equal');
+const deleteButt = document.querySelector('#delete');
 
 // variable for the chosen operator
 let chosenOp;
@@ -43,7 +44,12 @@ function populate(numButton) {
     numButton.forEach((button) => {
         if(button.id != 'equal') {
             button.addEventListener('click', () => {
-                inout.textContent += button.id;
+                if (inout.textContent === '0') {
+                    inout.textContent = '';
+                    inout.textContent += button.id;
+                } else {
+                    inout.textContent += button.id;
+                }
             })
         }
     })
@@ -142,7 +148,19 @@ clear.addEventListener('click', () => {
     inputArray = 0;
     output = 0;
     expression.textContent = '';
-    inout.textContent = '';
+    inout.textContent = '0';
 })
 
-// stil has bugs dealing with decimal
+// delete button
+deleteButt.addEventListener('click', () => {
+    let contentLen = inout.textContent.length;
+    let delOut = '';
+    for (let i = 0; i < contentLen-1; i++) {
+        delOut += inout.textContent[i];
+    }
+    if (delOut === '') {
+        inout.textContent = '0';
+    } else {
+        inout.textContent = delOut;
+    }
+})
