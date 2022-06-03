@@ -234,5 +234,7 @@ window.addEventListener('keydown', (event) => {
         divide();
     } else if (event.key === 'Enter') {
         equal();
+    } else if (event.key === 'Backspace') {
+        del();
     }
 })
