@@ -38,15 +38,31 @@ function division (a, b) {
 function operate(operator, number1, number2) {
     output = 0;
     output = operator(number1, number2);
+    if (Number.isInteger(output)) {
+        return output;
+    } else {
+        output = Number(output.toFixed(3));
+        return output;
+    }
 }
 
 function populate(numButton) {
     numButton.forEach((button) => {
-        if(button.id != 'equal') {
+        if(button.id != 'equal' && button.id != '.') {
             button.addEventListener('click', () => {
                 if (inout.textContent === '0') {
                     inout.textContent = '';
                     inout.textContent += button.id;
+                } else {
+                    inout.textContent += button.id;
+                }
+            })
+        } else if (button.id === '.') {
+            button.addEventListener('click', () => {
+                if (inout.textContent === '0') {
+                    inout.textContent += button.id;
+                } else if (inout.textContent === '') {
+                    inout.textContent += '0' + button.id;
                 } else {
                     inout.textContent += button.id;
                 }
