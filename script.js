@@ -2,12 +2,12 @@
 const numbs = document.querySelectorAll('.NButtons button');
 const expression = document.querySelector('.expression');
 const inout = document.querySelector('.inout');
-const divide = document.querySelector('#divide');
-const multiply = document.querySelector('#multiply');
-const minus = document.querySelector('#minus');
-const add = document.querySelector('#add');
-const clear = document.querySelector('#clear');
-const equal = document.querySelector('#equal');
+const divideButt = document.querySelector('#divide');
+const multiplyButt = document.querySelector('#multiply');
+const minusButt = document.querySelector('#minus');
+const addButt = document.querySelector('#add');
+const clearButt = document.querySelector('#clear');
+const equalButt = document.querySelector('#equal');
 const deleteButt = document.querySelector('#delete');
 
 // variable for the chosen operator
@@ -55,7 +55,7 @@ function operate(operator, number1, number2) {
 function populate(numButton) {
     numButton.forEach((button) => {
         if(button.id != 'equal' && button.id != '.') {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (event) => {
                 if (inout.textContent === '0') {
                     inout.textContent = '';
                     inout.textContent += button.id;
@@ -64,7 +64,7 @@ function populate(numButton) {
                 }
             })
         } else if (button.id === '.') {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (event) => {
                 // check if there has been . typed
                 let lenCon = inout.textContent.length;
                 let dotCount = 0;
@@ -96,8 +96,8 @@ function populate(numButton) {
 // run the populate function
 populate(numbs);
 
-// divide button
-divide.addEventListener('click', () => {
+// divide button function
+function divide() {
     // check if the expression's textContent is empty
     if (expression.textContent === '') {
         inputArray = Number(inout.textContent);
@@ -113,11 +113,12 @@ divide.addEventListener('click', () => {
         expression.textContent = output + " \u00F7";
         inputArray = output;
         inout.textContent = "";
-    }
-})
+    }    
+}
+divideButt.addEventListener('click', (event) => divide())
 
-// multiply button
-multiply.addEventListener('click', () => {
+// multiply button function
+function multiply() {
     if (expression.textContent === '') {       
         inputArray = Number(inout.textContent);
         inout.textContent = '';
@@ -132,10 +133,12 @@ multiply.addEventListener('click', () => {
         inputArray = output;
         inout.textContent = '';        
     }
-})
+}
+
+multiplyButt.addEventListener('click', (event) => multiply())
 
 // minus button
-minus.addEventListener('click', () => {
+function minus() {
     if (expression.textContent === '') {
         inputArray = Number(inout.textContent);
         inout.textContent = '';
@@ -150,10 +153,11 @@ minus.addEventListener('click', () => {
         inputArray = output;
         inout.textContent = ''; 
     }
-})
+}
+minusButt.addEventListener('click', (event) => minus())
 
 // addition button
-add.addEventListener('click', () => {
+function add() {
     if (expression.textContent === '') {
         inputArray = Number(inout.textContent);
         inout.textContent = '';
@@ -168,10 +172,11 @@ add.addEventListener('click', () => {
         inputArray = output;
         inout.textContent = '';
     }
-})
+}
+addButt.addEventListener('click', (event) => add())
 
-// equal button
-equal.addEventListener('click', () => {
+// equal button function
+function equal() {
     if (inout.textContent !== '') {
         operate(chosenOp, inputArray, Number(inout.textContent));
         expression.textContent = '';
@@ -179,18 +184,20 @@ equal.addEventListener('click', () => {
     } else {
         inout.textContent = output;
     }
-})
+}
+equalButt.addEventListener('click', (event) => equal())
 
-// clear button
-clear.addEventListener('click', () => {
+// clear button's function
+function clear() {
     inputArray = 0;
     output = 0;
     expression.textContent = '';
     inout.textContent = '0';
-})
+}
+clearButt.addEventListener('click', (event) => clear())
 
-// delete button
-deleteButt.addEventListener('click', () => {
+// delete button's function
+function del() {
     let contentLen = inout.textContent.length;
     let delOut = '';
     for (let i = 0; i < contentLen-1; i++) {
@@ -200,5 +207,32 @@ deleteButt.addEventListener('click', () => {
         inout.textContent = '0';
     } else {
         inout.textContent = delOut;
+    }
+}
+deleteButt.addEventListener('click', (event) => del())
+
+// Keyboard Functionality
+window.addEventListener('keydown', (event) => {
+    if (isFinite(event.key)) {
+        if (inout.textContent === '0') {
+            inout.textContent = '';
+            inout.textContent += event.key;
+        } else {
+            inout.textContent += event.key;
+        } 
+    } else if (event.key === 'Delete') {
+        del();
+    } else if (event.key === 'Escape') {
+        clear();
+    } else if (event.key === '+') {
+        add();
+    } else if (event.key === '-') {
+        minus();
+    } else if (event.key === '*') {
+        multiply();
+    } else if (event.key === '/') {
+        divide();
+    } else if (event.key === 'Enter') {
+        equal();
     }
 })
