@@ -52,6 +52,32 @@ function operate(operator, number1, number2) {
     }
 }
 
+function myComma() {
+    // check if there has been . typed
+    let lenCon = inout.textContent.length;
+    let dotCount = 0;
+    for (let i = 0; i < lenCon; i++) {
+        if (inout.textContent[i] === '.') {
+            dotCount += 1;
+        } else {
+            continue;
+        }
+    }
+    
+    // user can't type more than one comma
+    if (dotCount === 0) {
+        if (inout.textContent === '0') {
+            inout.textContent += ".";
+        } else if (inout.textContent === '') {
+            inout.textContent += '0' + ".";
+        } else {
+            inout.textContent += ".";
+        }
+    } else {
+        return;
+    }
+}
+
 function populate(numButton) {
     numButton.forEach((button) => {
         if(button.id != 'equal' && button.id != '.') {
@@ -64,31 +90,7 @@ function populate(numButton) {
                 }
             })
         } else if (button.id === '.') {
-            button.addEventListener('click', (event) => {
-                // check if there has been . typed
-                let lenCon = inout.textContent.length;
-                let dotCount = 0;
-                for (let i = 0; i < lenCon; i++) {
-                    if (inout.textContent[i] === '.') {
-                        dotCount += 1;
-                    } else {
-                        continue;
-                    }
-                }
-                
-                // user can't type more than one comma
-                if (dotCount === 0) {
-                    if (inout.textContent === '0') {
-                        inout.textContent += button.id;
-                    } else if (inout.textContent === '') {
-                        inout.textContent += '0' + button.id;
-                    } else {
-                        inout.textContent += button.id;
-                    }
-                } else {
-                    return;
-                }
-            })
+            button.addEventListener('click', (event) => myComma())
         }
     })
 }
@@ -236,5 +238,7 @@ window.addEventListener('keydown', (event) => {
         equal();
     } else if (event.key === 'Backspace') {
         del();
+    } else if (event.key === '.') {
+        myComma();
     }
 })
