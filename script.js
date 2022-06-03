@@ -32,13 +32,19 @@ function multiplication(a, b) {
 }
 
 function division (a, b) {
-    return a / b;
+    if (b === 0) {
+        alert('cannot divide by 0')
+    } else {
+        return a / b;
+    }
 }
 
 function operate(operator, number1, number2) {
     output = 0;
     output = operator(number1, number2);
-    if (Number.isInteger(output)) {
+    if (output === NaN) {
+        output = 0;
+    } else if (Number.isInteger(output)) {
         return output;
     } else {
         output = Number(output.toFixed(3));
@@ -59,12 +65,28 @@ function populate(numButton) {
             })
         } else if (button.id === '.') {
             button.addEventListener('click', () => {
-                if (inout.textContent === '0') {
-                    inout.textContent += button.id;
-                } else if (inout.textContent === '') {
-                    inout.textContent += '0' + button.id;
+                // check if there has been . typed
+                let lenCon = inout.textContent.length;
+                let dotCount = 0;
+                for (let i = 0; i < lenCon; i++) {
+                    if (inout.textContent[i] === '.') {
+                        dotCount += 1;
+                    } else {
+                        continue;
+                    }
+                }
+                
+                // user can't type more than one comma
+                if (dotCount === 0) {
+                    if (inout.textContent === '0') {
+                        inout.textContent += button.id;
+                    } else if (inout.textContent === '') {
+                        inout.textContent += '0' + button.id;
+                    } else {
+                        inout.textContent += button.id;
+                    }
                 } else {
-                    inout.textContent += button.id;
+                    return;
                 }
             })
         }
