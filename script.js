@@ -221,7 +221,7 @@ window.addEventListener('keydown', (event) => {
             inout.textContent += event.key;
         } 
     } else if (event.key === 'Delete') {
-        del();
+        clear();
     } else if (event.key === 'Escape') {
         clear();
     } else if (event.key === '+') {
